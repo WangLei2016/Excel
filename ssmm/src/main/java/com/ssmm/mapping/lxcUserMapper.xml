@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ssmm.dao.lxcUserMapper">
+	<resultMap id="BaseResultMap" type="com.ssmm.model.lxcUser">
+		<id column="id" property="id" jdbcType="BIGINT" />
+		<result column="xxtuserid" property="xxtuserid" jdbcType="VARCHAR" />
+		<result column="role" property="role" jdbcType="TINYINT" />
+		<result column="phonenumber" property="phonenumber" jdbcType="VARCHAR" />
+		<result column="username" property="username" jdbcType="VARCHAR" />
+		<result column="password" property="password" jdbcType="CHAR" />
+		<result column="smspwd" property="smspwd" jdbcType="VARCHAR" />
+		<result column="sex" property="sex" jdbcType="TINYINT" />
+		<result column="exp" property="exp" jdbcType="INTEGER" />
+		<result column="level" property="level" jdbcType="SMALLINT" />
+		<result column="birthday" property="birthday" jdbcType="VARCHAR" />
+		<result column="honor" property="honor" jdbcType="VARCHAR" />
+		<result column="friendcheckflag" property="friendcheckflag"
+			jdbcType="TINYINT" />
+		<result column="phonesearchflag" property="phonesearchflag"
+			jdbcType="TINYINT" />
+		<result column="teacherphoneshowflag" property="teacherphoneshowflag"
+			jdbcType="TINYINT" />
+		<result column="signature" property="signature" jdbcType="VARCHAR" />
+		<result column="avatarurl" property="avatarurl" jdbcType="VARCHAR" />
+		<result column="avatargroup" property="avatargroup" jdbcType="VARCHAR" />
+		<result column="avatarremote" property="avatarremote" jdbcType="VARCHAR" />
+		<result column="thumb" property="thumb" jdbcType="VARCHAR" />
+		<result column="thumbgroup" property="thumbgroup" jdbcType="VARCHAR" />
+		<result column="thumbremote" property="thumbremote" jdbcType="VARCHAR" />
+		<result column="forumbackgroundurl" property="forumbackgroundurl"
+			jdbcType="VARCHAR" />
+		<result column="forumbackgroundgroup" property="forumbackgroundgroup"
+			jdbcType="VARCHAR" />
+		<result column="forumbackgroundremote" property="forumbackgroundremote"
+			jdbcType="VARCHAR" />
+		<result column="expiretime" property="expiretime" jdbcType="TIMESTAMP" />
+		<result column="isshow" property="isshow" jdbcType="TINYINT" />
+		<result column="issilent" property="issilent" jdbcType="BIT" />
+		<result column="deleteflag" property="deleteflag" jdbcType="TINYINT" />
+		<result column="lastupdate" property="lastupdate" jdbcType="TIMESTAMP" />
+		<result column="user_status" property="userStatus" jdbcType="INTEGER" />
+		<result column="province" property="province" jdbcType="VARCHAR" />
+		<result column="ismaster" property="ismaster" jdbcType="TINYINT" />
+		<result column="activetime" property="activetime" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		id, xxtuserid, role, phonenumber, username, password,
+		smspwd, sex, exp,
+		level, birthday,
+		honor, friendcheckflag,
+		phonesearchflag, teacherphoneshowflag, signature,
+		avatarurl,
+		avatargroup, avatarremote, thumb, thumbgroup, thumbremote,
+		forumbackgroundurl,
+		forumbackgroundgroup,
+		forumbackgroundremote,
+		expiretime, isshow, issilent, deleteflag, lastupdate, user_status,
+		province, ismaster
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from lxc_user
+		where id = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from
+		lxc_user
+		where id = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.ssmm.model.lxcUser">
+		insert into lxc_user (id,
+		xxtuserid, role,
+		phonenumber, username, password,
+		smspwd, sex, exp,
+		level,
+		birthday, honor, friendcheckflag,
+		phonesearchflag,
+		teacherphoneshowflag,
+		signature, avatarurl, avatargroup,
+		avatarremote,
+		thumb, thumbgroup,
+		thumbremote, forumbackgroundurl,
+		forumbackgroundgroup,
+		forumbackgroundremote, expiretime, isshow,
+		issilent, deleteflag, lastupdate,
+		user_status, province, ismaster
+		)
+		values (#{id,jdbcType=BIGINT}, #{xxtuserid,jdbcType=VARCHAR},
+		#{role,jdbcType=TINYINT},
+		#{phonenumber,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR}, #{password,jdbcType=CHAR},
+		#{smspwd,jdbcType=VARCHAR}, #{sex,jdbcType=TINYINT},
+		#{exp,jdbcType=INTEGER}, #{level,jdbcType=SMALLINT},
+		#{birthday,jdbcType=VARCHAR}, #{honor,jdbcType=VARCHAR},
+		#{friendcheckflag,jdbcType=TINYINT},
+		#{phonesearchflag,jdbcType=TINYINT},
+		#{teacherphoneshowflag,jdbcType=TINYINT},
+		#{signature,jdbcType=VARCHAR}, #{avatarurl,jdbcType=VARCHAR},
+		#{avatargroup,jdbcType=VARCHAR},
+		#{avatarremote,jdbcType=VARCHAR},
+		#{thumb,jdbcType=VARCHAR}, #{thumbgroup,jdbcType=VARCHAR},
+		#{thumbremote,jdbcType=VARCHAR},
+		#{forumbackgroundurl,jdbcType=VARCHAR},
+		#{forumbackgroundgroup,jdbcType=VARCHAR},
+		#{forumbackgroundremote,jdbcType=VARCHAR},
+		#{expiretime,jdbcType=TIMESTAMP}, #{isshow,jdbcType=TINYINT},
+		#{issilent,jdbcType=BIT}, #{deleteflag,jdbcType=TINYINT},
+		#{lastupdate,jdbcType=TIMESTAMP},
+		#{userStatus,jdbcType=INTEGER},
+		#{province,jdbcType=VARCHAR}, #{ismaster,jdbcType=TINYINT}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.ssmm.model.lxcUser">
+		insert into lxc_user
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="xxtuserid != null">
+				xxtuserid,
+			</if>
+			<if test="role != null">
+				role,
+			</if>
+			<if test="phonenumber != null">
+				phonenumber,
+			</if>
+			<if test="username != null">
+				username,
+			</if>
+			<if test="password != null">
+				password,
+			</if>
+			<if test="smspwd != null">
+				smspwd,
+			</if>
+			<if test="sex != null">
+				sex,
+			</if>
+			<if test="exp != null">
+				exp,
+			</if>
+			<if test="level != null">
+				level,
+			</if>
+			<if test="birthday != null">
+				birthday,
+			</if>
+			<if test="honor != null">
+				honor,
+			</if>
+			<if test="friendcheckflag != null">
+				friendcheckflag,
+			</if>
+			<if test="phonesearchflag != null">
+				phonesearchflag,
+			</if>
+			<if test="teacherphoneshowflag != null">
+				teacherphoneshowflag,
+			</if>
+			<if test="signature != null">
+				signature,
+			</if>
+			<if test="avatarurl != null">
+				avatarurl,
+			</if>
+			<if test="avatargroup != null">
+				avatargroup,
+			</if>
+			<if test="avatarremote != null">
+				avatarremote,
+			</if>
+			<if test="thumb != null">
+				thumb,
+			</if>
+			<if test="thumbgroup != null">
+				thumbgroup,
+			</if>
+			<if test="thumbremote != null">
+				thumbremote,
+			</if>
+			<if test="forumbackgroundurl != null">
+				forumbackgroundurl,
+			</if>
+			<if test="forumbackgroundgroup != null">
+				forumbackgroundgroup,
+			</if>
+			<if test="forumbackgroundremote != null">
+				forumbackgroundremote,
+			</if>
+			<if test="expiretime != null">
+				expiretime,
+			</if>
+			<if test="isshow != null">
+				isshow,
+			</if>
+			<if test="issilent != null">
+				issilent,
+			</if>
+			<if test="deleteflag != null">
+				deleteflag,
+			</if>
+			<if test="lastupdate != null">
+				lastupdate,
+			</if>
+			<if test="userStatus != null">
+				user_status,
+			</if>
+			<if test="province != null">
+				province,
+			</if>
+			<if test="ismaster != null">
+				ismaster,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="xxtuserid != null">
+				#{xxtuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="role != null">
+				#{role,jdbcType=TINYINT},
+			</if>
+			<if test="phonenumber != null">
+				#{phonenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				#{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				#{password,jdbcType=CHAR},
+			</if>
+			<if test="smspwd != null">
+				#{smspwd,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				#{sex,jdbcType=TINYINT},
+			</if>
+			<if test="exp != null">
+				#{exp,jdbcType=INTEGER},
+			</if>
+			<if test="level != null">
+				#{level,jdbcType=SMALLINT},
+			</if>
+			<if test="birthday != null">
+				#{birthday,jdbcType=VARCHAR},
+			</if>
+			<if test="honor != null">
+				#{honor,jdbcType=VARCHAR},
+			</if>
+			<if test="friendcheckflag != null">
+				#{friendcheckflag,jdbcType=TINYINT},
+			</if>
+			<if test="phonesearchflag != null">
+				#{phonesearchflag,jdbcType=TINYINT},
+			</if>
+			<if test="teacherphoneshowflag != null">
+				#{teacherphoneshowflag,jdbcType=TINYINT},
+			</if>
+			<if test="signature != null">
+				#{signature,jdbcType=VARCHAR},
+			</if>
+			<if test="avatarurl != null">
+				#{avatarurl,jdbcType=VARCHAR},
+			</if>
+			<if test="avatargroup != null">
+				#{avatargroup,jdbcType=VARCHAR},
+			</if>
+			<if test="avatarremote != null">
+				#{avatarremote,jdbcType=VARCHAR},
+			</if>
+			<if test="thumb != null">
+				#{thumb,jdbcType=VARCHAR},
+			</if>
+			<if test="thumbgroup != null">
+				#{thumbgroup,jdbcType=VARCHAR},
+			</if>
+			<if test="thumbremote != null">
+				#{thumbremote,jdbcType=VARCHAR},
+			</if>
+			<if test="forumbackgroundurl != null">
+				#{forumbackgroundurl,jdbcType=VARCHAR},
+			</if>
+			<if test="forumbackgroundgroup != null">
+				#{forumbackgroundgroup,jdbcType=VARCHAR},
+			</if>
+			<if test="forumbackgroundremote != null">
+				#{forumbackgroundremote,jdbcType=VARCHAR},
+			</if>
+			<if test="expiretime != null">
+				#{expiretime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isshow != null">
+				#{isshow,jdbcType=TINYINT},
+			</if>
+			<if test="issilent != null">
+				#{issilent,jdbcType=BIT},
+			</if>
+			<if test="deleteflag != null">
+				#{deleteflag,jdbcType=TINYINT},
+			</if>
+			<if test="lastupdate != null">
+				#{lastupdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userStatus != null">
+				#{userStatus,jdbcType=INTEGER},
+			</if>
+			<if test="province != null">
+				#{province,jdbcType=VARCHAR},
+			</if>
+			<if test="ismaster != null">
+				#{ismaster,jdbcType=TINYINT},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.ssmm.model.lxcUser">
+		update lxc_user
+		<set>
+			<if test="xxtuserid != null">
+				xxtuserid = #{xxtuserid,jdbcType=VARCHAR},
+			</if>
+			<if test="role != null">
+				role = #{role,jdbcType=TINYINT},
+			</if>
+			<if test="phonenumber != null">
+				phonenumber = #{phonenumber,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				username = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				password = #{password,jdbcType=CHAR},
+			</if>
+			<if test="smspwd != null">
+				smspwd = #{smspwd,jdbcType=VARCHAR},
+			</if>
+			<if test="sex != null">
+				sex = #{sex,jdbcType=TINYINT},
+			</if>
+			<if test="exp != null">
+				exp = #{exp,jdbcType=INTEGER},
+			</if>
+			<if test="level != null">
+				level = #{level,jdbcType=SMALLINT},
+			</if>
+			<if test="birthday != null">
+				birthday = #{birthday,jdbcType=VARCHAR},
+			</if>
+			<if test="honor != null">
+				honor = #{honor,jdbcType=VARCHAR},
+			</if>
+			<if test="friendcheckflag != null">
+				friendcheckflag = #{friendcheckflag,jdbcType=TINYINT},
+			</if>
+			<if test="phonesearchflag != null">
+				phonesearchflag = #{phonesearchflag,jdbcType=TINYINT},
+			</if>
+			<if test="teacherphoneshowflag != null">
+				teacherphoneshowflag =
+				#{teacherphoneshowflag,jdbcType=TINYINT},
+			</if>
+			<if test="signature != null">
+				signature = #{signature,jdbcType=VARCHAR},
+			</if>
+			<if test="avatarurl != null">
+				avatarurl = #{avatarurl,jdbcType=VARCHAR},
+			</if>
+			<if test="avatargroup != null">
+				avatargroup = #{avatargroup,jdbcType=VARCHAR},
+			</if>
+			<if test="avatarremote != null">
+				avatarremote = #{avatarremote,jdbcType=VARCHAR},
+			</if>
+			<if test="thumb != null">
+				thumb = #{thumb,jdbcType=VARCHAR},
+			</if>
+			<if test="thumbgroup != null">
+				thumbgroup = #{thumbgroup,jdbcType=VARCHAR},
+			</if>
+			<if test="thumbremote != null">
+				thumbremote = #{thumbremote,jdbcType=VARCHAR},
+			</if>
+			<if test="forumbackgroundurl != null">
+				forumbackgroundurl =
+				#{forumbackgroundurl,jdbcType=VARCHAR},
+			</if>
+			<if test="forumbackgroundgroup != null">
+				forumbackgroundgroup =
+				#{forumbackgroundgroup,jdbcType=VARCHAR},
+			</if>
+			<if test="forumbackgroundremote != null">
+				forumbackgroundremote =
+				#{forumbackgroundremote,jdbcType=VARCHAR},
+			</if>
+			<if test="expiretime != null">
+				expiretime = #{expiretime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="isshow != null">
+				isshow = #{isshow,jdbcType=TINYINT},
+			</if>
+			<if test="issilent != null">
+				issilent = #{issilent,jdbcType=BIT},
+			</if>
+			<if test="deleteflag != null">
+				deleteflag = #{deleteflag,jdbcType=TINYINT},
+			</if>
+			<if test="lastupdate != null">
+				lastupdate = #{lastupdate,jdbcType=TIMESTAMP},
+			</if>
+			<if test="userStatus != null">
+				user_status = #{userStatus,jdbcType=INTEGER},
+			</if>
+			<if test="province != null">
+				province = #{province,jdbcType=VARCHAR},
+			</if>
+			<if test="ismaster != null">
+				ismaster = #{ismaster,jdbcType=TINYINT},
+			</if>
+		</set>
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.ssmm.model.lxcUser">
+		update lxc_user
+		set xxtuserid = #{xxtuserid,jdbcType=VARCHAR},
+		role =
+		#{role,jdbcType=TINYINT},
+		phonenumber =
+		#{phonenumber,jdbcType=VARCHAR},
+		username =
+		#{username,jdbcType=VARCHAR},
+		password = #{password,jdbcType=CHAR},
+		smspwd = #{smspwd,jdbcType=VARCHAR},
+		sex = #{sex,jdbcType=TINYINT},
+		exp
+		= #{exp,jdbcType=INTEGER},
+		level = #{level,jdbcType=SMALLINT},
+		birthday
+		= #{birthday,jdbcType=VARCHAR},
+		honor = #{honor,jdbcType=VARCHAR},
+		friendcheckflag = #{friendcheckflag,jdbcType=TINYINT},
+		phonesearchflag
+		= #{phonesearchflag,jdbcType=TINYINT},
+		teacherphoneshowflag =
+		#{teacherphoneshowflag,jdbcType=TINYINT},
+		signature =
+		#{signature,jdbcType=VARCHAR},
+		avatarurl =
+		#{avatarurl,jdbcType=VARCHAR},
+		avatargroup =
+		#{avatargroup,jdbcType=VARCHAR},
+		avatarremote =
+		#{avatarremote,jdbcType=VARCHAR},
+		thumb = #{thumb,jdbcType=VARCHAR},
+		thumbgroup = #{thumbgroup,jdbcType=VARCHAR},
+		thumbremote =
+		#{thumbremote,jdbcType=VARCHAR},
+		forumbackgroundurl =
+		#{forumbackgroundurl,jdbcType=VARCHAR},
+		forumbackgroundgroup =
+		#{forumbackgroundgroup,jdbcType=VARCHAR},
+		forumbackgroundremote =
+		#{forumbackgroundremote,jdbcType=VARCHAR},
+		expiretime =
+		#{expiretime,jdbcType=TIMESTAMP},
+		isshow = #{isshow,jdbcType=TINYINT},
+		issilent = #{issilent,jdbcType=BIT},
+		deleteflag =
+		#{deleteflag,jdbcType=TINYINT},
+		lastupdate =
+		#{lastupdate,jdbcType=TIMESTAMP},
+		user_status =
+		#{userStatus,jdbcType=INTEGER},
+		province =
+		#{province,jdbcType=VARCHAR},
+		ismaster = #{ismaster,jdbcType=TINYINT}
+		where id = #{id,jdbcType=BIGINT}
+	</update>
+
+
+
+	<select id="selectAllNumebr"  resultType="Integer"   parameterType="String">
+<![CDATA[  select count(*)  from lxc_user u,lxc_user_login ul
+			where u.id=ul.userid 
+			and
+			ul.activetime<=#{0}
+			and
+			u.user_status=1 and role=2;  ]]>
+	</select>
+
+	<select id="selectAddNumebr" resultType="Integer"  parameterType="String">
+<![CDATA[   SELECT count(*) FROM lxc_user u,lxc_user_login ul 
+			WHERE u.id=ul.userid AND ul.activetime>=#{0} 
+			AND ul.activetime<=#{1} 
+			AND u.user_status=1 and role=2;  ]]>
+	</select>
+
+
+
+<select id="selectDetail" resultMap="BaseResultMap" parameterType="String">
+<![CDATA[  SELECT distinct u.id,u.role,u.phonenumber,ul.activetime FROM 
+lxc_user u,lxc_user_login ul 
+WHERE u.id=ul.userid 
+AND ul.activetime<=#{0} AND u.user_status=1 and role=2; ]]>
+	</select>
+
+
+
+</mapper>
